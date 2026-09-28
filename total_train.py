@@ -175,17 +175,13 @@ def test(test_loader,number):  # 输入4个测试集的其中之一
     df.to_csv(r"C:\Users\lenovo\OneDrive\桌面\#177.csv")
 
 if __name__ == "__main__":
-    # 构造伪数据：总周期 2000，特征维 N=7
     N = 7
     T = 100
-    # 数据加载和预处理
-    # dir_path = r"E:\My_EV_set_0\SOH_data"
-    # car_id = [i for i in range(1, 21)]
-
-    dir_path=r"E:\qinghua\SOH_data"
-    car_id = [3, 52, 15, 17, 24, 30, 34, 35, 37, 51, 57, 58, 70, 88,
-              92, 109, 132, 140, 141, 153, 154, 166, 176, 5, 177]
-    all_veh_data = []  # 存放20辆车的特征数据
+    # 数据加载和预处理-- 这里替换成你的数据和车辆编号
+    dir_path = r"E:\My_EV_set_0\SOH_data"
+    car_id = [i for i in range(1, 21)]
+    
+    all_veh_data = []  # 存放所有车的特征数据
     veh_ca = []
 
     for i in range(len(car_id)):
@@ -199,7 +195,7 @@ if __name__ == "__main__":
 
     # 准备训练和测试数据
     all_train_X, all_train_y, scaler = prepare_multi_timestep_data(all_veh_data[:len(car_id)-2])
-    # 4辆车分开预测
+    # 分开预测
     test_X1, test_y1, _ = prepare_multi_timestep_data(all_veh_data[len(car_id)-2:len(car_id)-1], scaler=scaler)
     test_X2, test_y2, _ = prepare_multi_timestep_data(all_veh_data[len(car_id)-1:len(car_id)], scaler=scaler)
 
